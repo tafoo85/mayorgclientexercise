@@ -20,7 +20,7 @@ export function normalizeGridData(data: any): NormalizedGrid {
         return { headers, rows };
     }
 
-    // Case 3: Array of Objects
+    // Case 3: Array of Objects: (Cell-Based)
     if (typeof data[0] === "object" && "col" in data[0]) {
         const maxRow = Math.max(...data.map((c) => c.row));
         const maxCol = Math.max(...data.map((c) => c.col));
