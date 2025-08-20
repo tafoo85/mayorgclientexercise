@@ -1,11 +1,22 @@
+import { NormalizedGrid } from "@/utils/normalizeGridData";
 import React from "react";
-import { NormalizedGrid } from "../utils/normalizeGridData";
 
-interface GridProps extends NormalizedGrid {
-    striped?: boolean;
+
+interface GridProps {
+    data: NormalizedGrid;
 }
 
-const Grid: React.FC<GridProps> = ({ headers, rows }) => {
+const Grid: React.FC<GridProps> = ({ data }) => {
+    // if data is invalid
+    if (!data) {
+        return (
+            <div className="rounded-xl border border-red-300 bg-red-50 p-4 text-red-700">
+                ⚠️ Error: failed to fetch data. Please try again later.
+            </div>
+        );
+    }
+    const { headers, rows } = data;
+
     return (
         <div className="overflow-x-auto rounded-xl border border-gray-200 bg-white shadow-sm">
             <table className="min-w-full border-collapse">

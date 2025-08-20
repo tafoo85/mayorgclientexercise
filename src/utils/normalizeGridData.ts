@@ -1,11 +1,12 @@
 export type NormalizedGrid = {
     headers: string[];
     rows: string[][];
-};
+} | null;
 
 // 1. Detect data type & normalize
 export function normalizeGridData(data: any): NormalizedGrid {
-    if (!Array.isArray(data)) throw new Error("Invalid data format");
+    //Error: Unsupported data format
+    if (!Array.isArray(data)) return null;
 
     // Case 1: Array of Arrays
     if (Array.isArray(data[0])) {
@@ -37,6 +38,7 @@ export function normalizeGridData(data: any): NormalizedGrid {
         return { headers, rows };
     }
 
-    throw new Error("Unsupported format");
+    //Error: Unsupported data format
+    return null;
 }
 
